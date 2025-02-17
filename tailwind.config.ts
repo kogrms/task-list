@@ -10,6 +10,7 @@ export default {
   ],
   theme: {
     fontSize: {
+      t10: ['10px', '110%'],
       t13: ['13px', '16px'],
       t14: ['14px', '120%'],
       t16: ['16px', '120%'],
@@ -39,12 +40,15 @@ export default {
         // 'lg': {'min': '1400px'}
       // },
       width: {
+        'content': '410px',
+        'task': '450px',
         '1px': '1px'
       },
       minWidth: {
       },
       maxWidth: {
-        '9/10': '90%'
+        '9/10': '90%',
+        '7/10': '70%'
       },
       height: {
         '1px': '1px'

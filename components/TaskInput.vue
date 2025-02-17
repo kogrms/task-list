@@ -5,12 +5,12 @@
       type="text"
       placeholder="Add new todo..."
       class="p-3 rounded-lg w-[317px] h-10"
+      @keyup.enter="addTask"
     />
     <button
       @click="addTask"
-      :disabled="!task"
       class="blue-btn"
-      v-show="task"
+      v-show="task.trim()"
     >
       Submit
     </button>
@@ -18,15 +18,16 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue';
+  import { ref } from 'vue'
+  import { useTaskStore } from '@/stores/taskStore'
 
-  const task = ref('');
+  const task = ref('')
+  const taskStore = useTaskStore()
 
   const addTask = () => {
     if (task.value.trim()) {
-      // Добавляем задачу в список
-      console.log('Задача добавлена:', task.value);
-      task.value = '';
+      taskStore.addTask(task.value.trim()) // Add to Pinia Store
+      task.value = '' // Clear input
     }
-  };
+  }
 </script>
