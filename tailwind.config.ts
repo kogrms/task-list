@@ -11,6 +11,7 @@ export default {
   theme: {
     fontSize: {
       t10: ['10px', '110%'],
+      t12: ['12px', '16px'],
       t13: ['13px', '16px'],
       t14: ['14px', '120%'],
       t16: ['16px', '120%'],
@@ -29,7 +30,9 @@ export default {
       'blue': '#2578F4',
       'grey-c7': '#C7CCD1',
       'grey-20': '#202427',
-      'grey-8f': '#8F99A3'
+      'grey-8f': '#8F99A3',
+      'purple': '#5D5FEF',
+      'pink': '#EF5DA8'
     },
     extend: {
       // screens: {
