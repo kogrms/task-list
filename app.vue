@@ -4,27 +4,7 @@
       <img src="~assets/images/illustration.png" class="w-[180px] max-w-9/10 h-auto"/>
       <h1 class="text-3xl font-bold text-center py-12">Today I need to</h1>
       <TaskInput class="mt-1 mb-10"/>
-      <div v-if="tasks.length" class="flex flex-col items-center">
-        <TaskList />
-        <div class="w-content flex justify-center gap-8 mt-8">
-          <ProgressBarCard
-            class="w-1/2"
-            :card="{
-              count: tasks.filter(task => task.completed).length,
-              tasks: tasks.length,
-              status: 'completed'
-            }"
-          />
-          <ProgressBarCard
-            class="w-1/2"
-            :card="{
-              count: tasks.filter(task => !task.completed).length,
-              tasks: tasks.length,
-              status: 'todo'
-            }"
-          />
-        </div>
-      </div>
+      <TaskSection v-if="tasks.length"/>
       <div v-else class="flex items-center justify-center gap-2 mt-auto">
         <img src="~assets/images/checkmark.svg" class="w-6 h-6"/>
         <p class="text-t14 text-grey-8f">Congrats, you have no more tasks to do</p>
