@@ -1,10 +1,10 @@
 <template>
-  <div class="flex items-center gap-4">
+  <div class="flex justify-center items-center gap-4 flex-wrap max-w-9/10">
     <input
       v-model="task"
       type="text"
       placeholder="Add new todo..."
-      class="p-3 rounded-lg w-[317px] h-10"
+      class="p-3 rounded-lg w-[317px] max-w-full h-10"
       @keyup.enter="addTask"
     />
     <button

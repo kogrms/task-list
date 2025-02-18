@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap justify-between mt-8 gap-1">
+  <div class="flex flex-wrap justify-center items-center mt-8 gap-1">
     <button v-if="!areAllTasksChecked" @click="handleCheckAll" class="btn">
       Check all
     </button>

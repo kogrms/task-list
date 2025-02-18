@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-grey-20/5 rounded-lg p-4">
+  <div class="bg-grey-20/5 rounded-lg p-4 w-[190px] min-w-[150px]">
     <p class="text-t12 text-grey-20/50 font-semibold mb-1">{{ card.count }} tasks</p>
     <h4 class="text-t14 text-grey-20 font-bold mb-3">{{ card.status === 'completed' ? 'Completed' : 'To be finished' }}</h4>
     <div class="h-1 bg-grey-c7/50 rounded-lg">
