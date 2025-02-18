@@ -33,6 +33,9 @@ export const useTaskStore = defineStore('taskStore', {
     setFilter(filter: 'all' | 'active' | 'completed') {
       this.filter = filter
     },
+    updateTaskOrder(newOrder: { id: number; text: string; completed: boolean }[]) {
+      this.tasks = newOrder
+    }
   },
   getters: {
     isEditingTask: (state) => (id: number) => state.editingTaskId === id,

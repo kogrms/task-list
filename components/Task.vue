@@ -1,6 +1,6 @@
 <template>
-  <li class="flex items-center justify-between gap-4 w-task pr-5 h-5">
-    <div class="flex items-center">
+  <li class="flex items-center justify-between gap-4 w-task pr-5 h-5 bg-white">
+    <div class="flex items-center w-full">
       <div class="w-6 h-full">
         <!-- drag-n-drop icon on hover (desktops) or on long tap (mobiles/tablets) -->
       </div>
@@ -11,16 +11,21 @@
         class="w-4 h-4 cursor-pointer"
         :class="isEditing ? 'mr-2' : 'mr-3'"
       />
-      <div class="max-w-7/10">
+      <div class="w-full max-w-[300px]">
         <input
           v-if="isEditing"
-          type="text"
+          ref="editInput"
+          type="text" 
           v-model="newTaskText"
           @blur="saveTask"
           @keyup.enter="saveTask"
           class="w-full px-1 py-[2px] rounded-md text-t10 h-5"
         />
-        <h3 v-else :class="{ 'text-grey-20/50': task.completed }">
+        <h3
+          v-else
+          class="truncate w-full"
+          :class="{ 'text-grey-20/50': task.completed }"
+        >
           {{ task.text }}
         </h3>
       </div>
@@ -37,7 +42,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 import { useTaskStore } from '@/stores/taskStore'
 
 const { task } = defineProps({
@@ -46,12 +51,12 @@ const { task } = defineProps({
     required: true
   }
 })
-
 const taskStore = useTaskStore()
 
 // Local state for editing
 const isEditing = ref(false)
 const newTaskText = ref(task.text)
+const editInput = ref(null)
 
 const toggleTask = () => {
   taskStore.toggleTask(task.id) // Toggle task completion state in Pinia
@@ -59,6 +64,9 @@ const toggleTask = () => {
 
 const editTask = () => {
   isEditing.value = true // Enter edit mode
+  nextTick(() => {
+    editInput.value.focus() // Focus input after DOM update
+  })
 }
 
 const saveTask = () => {
