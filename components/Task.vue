@@ -1,8 +1,22 @@
 <template>
-  <li class="flex items-center justify-between gap-4 w-task pr-5 h-5 bg-white">
+  <li
+    class="flex items-center justify-between gap-4 w-task pr-5 h-5 rounded-sm bg-white"
+    :class="{ 'handle': isDesktopDraggable || isMobileDraggable }"
+    @mouseover="showDragHandle"
+    @mouseleave="hideDragHandle"
+    @touchstart="handleTouchStart"
+    @touchend="handleTouchEnd"
+  >
     <div class="flex items-center w-full">
       <div class="w-6 h-full">
         <!-- drag-n-drop icon on hover (desktops) or on long tap (mobiles/tablets) -->
+        <img
+          v-show="isDesktopDraggable || isMobileDraggable"
+          src="~assets/images/drag.svg"
+          alt="Drag task handler"
+          class="w-4 h-4 cursor-grab"
+          :class="{ 'handle': isDesktopDraggable }"
+        />
       </div>
       <input
         type="checkbox"
@@ -15,7 +29,7 @@
         <input
           v-if="isEditing"
           ref="editInput"
-          type="text" 
+          type="text"
           v-model="newTaskText"
           @blur="saveTask"
           @keyup.enter="saveTask"
@@ -45,10 +59,14 @@
 import { ref, nextTick } from 'vue'
 import { useTaskStore } from '@/stores/taskStore'
 
-const { task } = defineProps({
+const { task, noDragdrop } = defineProps({
   task: {
     type: Object,
     required: true
+  },
+  noDragdrop: {
+    type: Boolean,
+    default: false
   }
 })
 const taskStore = useTaskStore()
@@ -57,6 +75,10 @@ const taskStore = useTaskStore()
 const isEditing = ref(false)
 const newTaskText = ref(task.text)
 const editInput = ref(null)
+
+const isDesktopDraggable = ref(false) // Enable drag-n-drop for desktops
+const isMobileDraggable = ref(false) // Enable drag-n-drop for mobiles/tablets
+let touchTimer = null
 
 const toggleTask = () => {
   taskStore.toggleTask(task.id) // Toggle task completion state in Pinia
@@ -81,5 +103,29 @@ const saveTask = () => {
 
 const deleteTask = () => {
   taskStore.removeTask(task.id) // Delete task from Pinia
+}
+
+const showDragHandle = () => {
+  if (!noDragdrop) {
+    isDesktopDraggable.value = true // Show drag handle on hover (desktop)
+  }
+}
+
+const hideDragHandle = () => {
+  isDesktopDraggable.value = false // Hide drag handle on hover out (desktop)
+}
+
+// For mobile devices, detect long tap to show drag handle
+const handleTouchStart = () => {
+  if (!noDragdrop) {
+    touchTimer = setTimeout(() => {
+      isMobileDraggable.value = true // Show drag handle after long tap
+    }, 500) // Adjust the time for long tap detection (500ms)
+  }
+}
+
+const handleTouchEnd = () => {
+  clearTimeout(touchTimer) // Reset timer if touch ends before long tap
+  isMobileDraggable.value = false // Hide drag handle after touch end
 }
 </script>

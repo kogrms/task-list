@@ -16,7 +16,8 @@
     "vue": "latest",
     "vue-draggable-plus": "^0.6.0",
     "vue-router": "latest",
-    "vue3-smooth-dnd": "^0.0.6"
+    "vue3-smooth-dnd": "^0.0.6",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.13.1"

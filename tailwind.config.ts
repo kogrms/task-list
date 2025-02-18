@@ -35,13 +35,13 @@ export default {
       'pink': '#EF5DA8'
     },
     extend: {
-      // screens: {
-        // 'md': '600px',
-        // 'lg': '1400px'
+      screens: {
+        'md': '600px',
+        'lg': '1400px'
         // 'sm': { 'max': '599px' },
         // 'md': { 'min': '600px', 'max': '1399px' },
         // 'lg': {'min': '1400px'}
-      // },
+      },
       width: {
         'content': '410px',
         'task': '450px',
