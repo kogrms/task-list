@@ -3,8 +3,8 @@ import { defineStore } from 'pinia'
 export const useTaskStore = defineStore('taskStore', {
   state: () => ({
     tasks: [] as { id: number; text: string; completed: boolean }[],
-    editingTaskId: null as number | null, // ID редактируемой задачи
-    filter: 'all' as 'all' | 'active' | 'completed', // Фильтр задач
+    editingTaskId: null as number | null, // Editing task id
+    filter: 'all' as 'all' | 'active' | 'completed', // Current filter
   }),
   actions: {
     addTask(text: string) {

@@ -1,7 +1,7 @@
 <template>
   <li
     class="flex items-center justify-between gap-4 w-[calc(100%-0.25rem)] pr-3 mr-1 h-7 rounded-md bg-white dark:bg-grey-20 shrink-0"
-    :class="{ 'handle': isDesktopDraggable || isMobileDraggable }"
+    :class="{ 'handle': isMobileDraggable }"
     @mouseover="showDragHandle"
     @mouseleave="hideDragHandle"
     @touchstart="handleTouchStart"
@@ -12,8 +12,7 @@
         <!-- drag-n-drop icon on hover (desktops) or on long tap (mobiles/tablets) -->
         <svgo-drag
           v-show="isDesktopDraggable || isMobileDraggable"
-          class="w-4 h-4 cursor-grab text-grey-20/50 dark:text-white/65"
-          :class="{ 'handle': isDesktopDraggable }"
+          class="handle w-4 h-4 cursor-grab text-grey-20/50 dark:text-white/65"
         />
       </div>
       <input
@@ -57,14 +56,10 @@
 import { ref, nextTick } from 'vue'
 import { useTaskStore } from '@/stores/taskStore'
 
-const { task, noDragdrop } = defineProps({
+const { task } = defineProps({
   task: {
     type: Object,
     required: true
-  },
-  noDragdrop: {
-    type: Boolean,
-    default: false
   }
 })
 const taskStore = useTaskStore()
@@ -104,9 +99,7 @@ const deleteTask = () => {
 }
 
 const showDragHandle = () => {
-  if (!noDragdrop) {
-    isDesktopDraggable.value = true // Show drag handle on hover (desktop)
-  }
+  isDesktopDraggable.value = true // Show drag handle on hover (desktop)
 }
 
 const hideDragHandle = () => {
@@ -115,15 +108,13 @@ const hideDragHandle = () => {
 
 // For mobile devices, detect long tap to show drag handle
 const handleTouchStart = () => {
-  if (!noDragdrop) {
-    touchTimer = setTimeout(() => {
-      isMobileDraggable.value = true // Show drag handle after long tap
-    }, 500) // Adjust the time for long tap detection (500ms)
-  }
+  touchTimer = setTimeout(() => {
+    isMobileDraggable.value = true // Show drag handle after long tap
+  }, 200) // Adjust the time for long tap detection
 }
 
 const handleTouchEnd = () => {
   clearTimeout(touchTimer) // Reset timer if touch ends before long tap
-  isMobileDraggable.value = false // Hide drag handle after touch end
+  // isMobileDraggable.value = false // Hide drag handle after touch end
 }
 </script>
