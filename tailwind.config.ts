@@ -36,11 +36,14 @@ export default {
     },
     extend: {
       screens: {
-        'md': '600px',
-        'lg': '1400px'
-        // 'sm': { 'max': '599px' },
-        // 'md': { 'min': '600px', 'max': '1399px' },
-        // 'lg': {'min': '1400px'}
+        'sm': '420px',
+        'md': '500px'
+        // https://tailwindcss.com/docs/responsive-design
+        // sm	@media(width >= 640px)
+        // md	@media(width >= 768px)
+        // lg	@media(width >= 1024px)
+        // xl	@media(width >= 1280px)
+        // 2xl	@media(width >= 1536px)
       },
       width: {
         'content': '410px',
@@ -50,9 +53,13 @@ export default {
       minWidth: {
       },
       maxWidth: {
+        'content': '410px',
+        'task': '450px',
         '9/10': '90%',
         '8/10': '80%',
-        '7/10': '70%'
+        '7/10': '70%',
+        '1/2': '50%',
+        '1/3': '33.333333%'
       },
       height: {
         '1px': '1px'
