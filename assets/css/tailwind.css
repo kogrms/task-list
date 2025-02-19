@@ -62,6 +62,10 @@
   body {
     font-family: Inter, Arial, Helvetica, sans-serif;
     @apply text-grey-20 dark:text-white text-t14;
+
+    /* &.dark {
+      @apply text-white;
+    } */
   }
   h1 {
     @apply text-t20 sm:text-h1 font-bold;

@@ -7,7 +7,7 @@
     @touchstart="handleTouchStart"
     @touchend="handleTouchEnd"
   >
-    <div class="flex items-center w-[70%] sm:w-[80%]">
+    <div class="flex items-center w-[70%] sm:w-[80%] md:w-[80%]">
       <div class="w-6 h-full flex justify-center items-center shrink-0">
         <!-- drag-n-drop icon on hover (desktops) or on long tap (mobiles/tablets) -->
         <svgo-drag
@@ -23,7 +23,7 @@
         class="w-4 h-4 cursor-pointer"
         :class="isEditing ? 'mr-2' : 'mr-3'"
       />
-      <div class="w-[70%] sm:w-[80%]">
+      <div class="w-[70%] sm:w-[75%] md:w-[85%]">
         <input
           v-if="isEditing"
           ref="editInput"

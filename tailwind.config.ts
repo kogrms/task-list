@@ -8,6 +8,7 @@ export default {
     './app.vue',
     './error.vue'
   ],
+  darkMode: 'class',
   theme: {
     fontSize: {
       t10: ['10px', '110%'],
