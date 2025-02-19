@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center gap-2 sm:gap-4 max-w-9/10">
+  <div class="flex justify-center items-center gap-2 sm:gap-4 max-w-full">
     <input
       v-model="task"
       type="text"
