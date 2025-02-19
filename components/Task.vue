@@ -1,13 +1,13 @@
 <template>
   <li
-    class="flex items-center justify-between gap-4 w-task pr-5 h-5 rounded-sm bg-white"
+    class="flex items-center justify-between gap-4 w-full pr-5 h-5 rounded-sm bg-white"
     :class="{ 'handle': isDesktopDraggable || isMobileDraggable }"
     @mouseover="showDragHandle"
     @mouseleave="hideDragHandle"
     @touchstart="handleTouchStart"
     @touchend="handleTouchEnd"
   >
-    <div class="flex items-center w-full">
+    <div class="flex items-center w-10/12">
       <div class="w-6 h-full">
         <!-- drag-n-drop icon on hover (desktops) or on long tap (mobiles/tablets) -->
         <img
@@ -25,7 +25,7 @@
         class="w-4 h-4 cursor-pointer"
         :class="isEditing ? 'mr-2' : 'mr-3'"
       />
-      <div class="w-full max-w-[300px]">
+      <div class="w-10/12">
         <input
           v-if="isEditing"
           ref="editInput"

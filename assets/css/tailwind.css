@@ -95,8 +95,14 @@
 }
 
 @layer components {
+  .input {
+    @apply p-3 rounded-lg w-[317px] max-w-full h-8 sm:h-10;
+  }
   .blue-btn {
-    @apply bg-blue text-white text-t13 py-3 px-4 rounded-lg h-10 lg:hover:bg-blue/80 cursor-pointer;
+    @apply bg-blue text-white flex justify-center items-center text-t12 sm:text-t13 px-3 sm:px-4 rounded-lg h-8 sm:h-10 lg:hover:bg-blue/80 cursor-pointer tracking-tight;
+  }
+  .grey-btn {
+    @apply text-grey-20  flex justify-center items-center text-t12 sm:text-t13 px-3 sm:px-4 rounded-lg h-8 sm:h-10 lg:hover:bg-grey-20/5 cursor-pointer font-semibold tracking-tight;
   }
 }
 

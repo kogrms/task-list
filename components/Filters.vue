@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-wrap justify-between mt-8 gap-1">
-    <button v-if="!areAllTasksChecked" @click="handleCheckAll" class="btn">
+  <div class="flex flex-wrap justify-center items-center mt-2 sm:mt-8 gap-1 w-[250px] sm:w-[300px] md:w-full">
+    <button v-if="!areAllTasksChecked" @click="handleCheckAll" class="grey-btn">
       Check all
     </button>
 
@@ -17,7 +17,7 @@
       </button>
     </div>
 
-    <button v-if="taskStore.hasCompletedTasks" @click="handleClearCompleted" class="btn">
+    <button v-if="taskStore.hasCompletedTasks" @click="handleClearCompleted" class="grey-btn">
       Clear completed
     </button>
   </div>
@@ -29,7 +29,7 @@ import { useTaskStore } from '@/stores/taskStore'
 
 const taskStore = useTaskStore()
 
-const activeClass = (filter) => taskStore.filter === filter ? 'btn-active' : 'btn'
+const activeClass = (filter) => taskStore.filter === filter ? 'blue-btn' : 'grey-btn'
 
 const areTasksStatusesDifferent = computed(() => 
   taskStore.tasks.some(task => task.completed) && taskStore.tasks.some(task => !task.completed)
@@ -46,12 +46,3 @@ const handleClearCompleted = () => {
   taskStore.setFilter('all')
 }
 </script>
-
-<style scoped>
-.btn {
-  @apply text-t13 font-semibold flex justify-center items-center h-8 px-3 rounded-lg text-grey-20 lg:hover:bg-grey-20/5;
-}
-.btn-active {
-  @apply text-t13 font-semibold flex justify-center items-center h-8 px-3 rounded-lg bg-blue text-white lg:hover:bg-blue/80;
-}
-</style>
