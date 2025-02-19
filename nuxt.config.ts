@@ -4,7 +4,11 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/tailwindcss',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    'nuxt-svgo'
   ],
-  css: ['~/assets/fonts/fonts.css']
+  css: ['~/assets/fonts/fonts.css'],
+  svgo: {
+    autoImportPath: './assets/images/'
+  }
 })

@@ -9,7 +9,7 @@
         item-key="id"
         @end="onDragEnd"
         handle=".handle"
-        class="flex flex-col items-center gap-y-4 h-[90px] overflow-y-auto custom-scrollbar w-full"
+        class="flex flex-col items-center gap-y-3 sm:gap-y-2 h-28 sm:h-[90px] overflow-y-auto custom-scrollbar w-full"
       >
         <template #item="{ element }">
           <Task :task="element" />
@@ -20,7 +20,7 @@
     <!-- Task list with filters & no drag-n-grop -->
     <ul
       v-if="taskStore.filter !== 'all'"
-      class="flex flex-col items-center gap-y-5 sm:gap-y-4 h-28 sm:h-[90px] overflow-y-auto custom-scrollbar w-full"
+      class="flex flex-col items-center gap-y-3 sm:gap-y-2 h-28 sm:h-[90px] overflow-y-auto custom-scrollbar w-full"
     >
       <Task v-for="task in taskStore.filteredTasks" :key="task.id" :task="task" :no-dragdrop="true" />
     </ul>

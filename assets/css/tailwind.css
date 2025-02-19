@@ -29,23 +29,18 @@
       scroll-behavior: auto !important;
     }
   }
-  /* input[type=text]:active, input[type=text]:hover, input[type=text]:focus {
-    @apply border border-grey-c7;
-    outline: 0;
-    outline-offset: 0;
-  } */
   input[type=text] {
-    @apply border border-grey-c7 text-t14;
+    @apply border border-grey-c7 text-t12 sm:text-t14 dark:bg-white/20;
     outline: 0;
     outline-offset: 0;
   }
   input[type=text]:hover {
-    @apply lg:border lg:border-grey-20/50;
+    @apply lg:border lg:border-grey-20/50 dark:lg:bg-white/20 dark:lg:border-white;
     outline: 0;
     outline-offset: 0;
   }
   input[type=text]:focus {
-    @apply border border-blue;
+    @apply border border-blue dark:bg-white/20;
     outline: 0;
     outline-offset: 0;
   }
@@ -54,27 +49,6 @@
     outline: 0;
     outline-offset: 0;
   }
-  /* input:active, input:hover, input:focus {
-    outline: 0;
-    outline-offset: 0;
-  }
-  textarea:active, textarea:hover, textarea:focus {
-    outline: 0;
-    outline-offset: 0;
-  }
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  input[type=number] {
-    -moz-appearance: textfield;
-  }
-  input {
-    border-radius: 0;
-    -webkit-appearance: none;
-    -webkit-border-radius: 0;
-  } */
   hr {
     border-top-width: 0px;
   }
@@ -84,7 +58,7 @@
   }
   body {
     font-family: Inter, Arial, Helvetica, sans-serif;
-    @apply text-grey-20 text-t14;
+    @apply text-grey-20 dark:text-white text-t14;
   }
   h1 {
     @apply text-t20 sm:text-h1 font-bold;
@@ -102,7 +76,7 @@
     @apply bg-blue text-white flex justify-center items-center text-t12 sm:text-t13 px-3 sm:px-4 rounded-lg h-8 sm:h-10 lg:hover:bg-blue/80 cursor-pointer tracking-tight;
   }
   .grey-btn {
-    @apply text-grey-20  flex justify-center items-center text-t12 sm:text-t13 px-3 sm:px-4 rounded-lg h-8 sm:h-10 lg:hover:bg-grey-20/5 cursor-pointer font-semibold tracking-tight;
+    @apply text-grey-20  flex justify-center items-center text-t12 sm:text-t13 px-3 sm:px-4 rounded-lg h-8 sm:h-10 lg:hover:bg-grey-20/5 cursor-pointer font-semibold tracking-tight dark:text-blue dark:lg:hover:bg-blue/10;
   }
 }
 
@@ -114,12 +88,12 @@
       border-radius: 8px;
     }
 
-    /* &::-webkit-scrollbar-track {
-      @apply bg-grey-20;
-    } */
+    &::-webkit-scrollbar-track {
+      @apply dark:bg-grey-8f/50;
+    }
 
     &::-webkit-scrollbar-thumb {
-      @apply bg-grey-20/10;
+      @apply bg-grey-20/10 dark:bg-grey-c7;
       outline: none;
       border-radius: 100px;
     }

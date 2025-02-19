@@ -1,6 +1,6 @@
 <template>
   <li
-    class="flex items-center justify-between gap-4 w-full pr-5 h-5 rounded-sm bg-white"
+    class="flex items-center justify-between gap-4 w-[calc(100%-2rem)] pr-4 mr-1 h-7 rounded-md bg-white dark:bg-grey-20 shrink-0"
     :class="{ 'handle': isDesktopDraggable || isMobileDraggable }"
     @mouseover="showDragHandle"
     @mouseleave="hideDragHandle"
@@ -8,13 +8,11 @@
     @touchend="handleTouchEnd"
   >
     <div class="flex items-center w-10/12">
-      <div class="w-6 h-full">
+      <div class="w-6 h-full flex justify-center items-center">
         <!-- drag-n-drop icon on hover (desktops) or on long tap (mobiles/tablets) -->
-        <img
+        <svgo-drag
           v-show="isDesktopDraggable || isMobileDraggable"
-          src="~assets/images/drag.svg"
-          alt="Drag task handler"
-          class="w-4 h-4 cursor-grab"
+          class="w-4 h-4 cursor-grab text-grey-20/50 dark:text-white/65"
           :class="{ 'handle': isDesktopDraggable }"
         />
       </div>
@@ -38,7 +36,7 @@
         <h3
           v-else
           class="truncate w-full text-t12 sm:text-t14"
-          :class="{ 'text-grey-20/50': task.completed }"
+          :class="{ 'text-grey-20/50 dark:text-white/50': task.completed }"
         >
           {{ task.text }}
         </h3>
@@ -46,10 +44,10 @@
     </div>
     <div class="w-14 flex justify-between items-center">
       <button @click="editTask" class="lg:hover:opacity-70 w-5 h-5 flex justify-center items-center">
-        <img src="~assets/images/pencil.svg" alt="Edit task" class="w-3 h-3 sm:w-4 sm:h-4" />
+        <svgo-pencil class="w-3 h-3 sm:w-4 sm:h-4 text-grey-20/65 dark:text-white/65" />
       </button>
       <button @click="deleteTask" class="lg:hover:opacity-70 w-5 h-5 flex justify-center items-center">
-        <img src="~assets/images/bin.svg" alt="Delete task" class="w-3 h-3 sm:w-4 sm:h-4" />
+        <svgo-bin class="w-3 h-3 sm:w-4 sm:h-4 text-red" />
       </button>
     </div>
   </li>

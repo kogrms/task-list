@@ -17,11 +17,6 @@ export default {
       t16: ['16px', '120%'],
       t20: ['20px', '120%'],
       h1: ['24px', '29px']
-      // dt: ['14px', '120%'],
-      // dt10: ['10px', '130%']
-    },
-    fontFamily: {
-      // 'inter': ['Inter', 'sans-serif']
     },
     colors: {
       // 'gray-3': '#333333',
@@ -33,7 +28,8 @@ export default {
       'grey-20': '#202427',
       'grey-8f': '#8F99A3',
       'purple': '#5D5FEF',
-      'pink': '#EF5DA8'
+      'pink': '#EF5DA8',
+      'red': '#EC3535'
     },
     extend: {
       screens: {
