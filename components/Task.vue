@@ -1,14 +1,14 @@
 <template>
   <li
-    class="flex items-center justify-between gap-4 w-[calc(100%-2rem)] pr-4 mr-1 h-7 rounded-md bg-white dark:bg-grey-20 shrink-0"
+    class="flex items-center justify-between gap-4 w-[calc(100%-0.25rem)] pr-3 mr-1 h-7 rounded-md bg-white dark:bg-grey-20 shrink-0"
     :class="{ 'handle': isDesktopDraggable || isMobileDraggable }"
     @mouseover="showDragHandle"
     @mouseleave="hideDragHandle"
     @touchstart="handleTouchStart"
     @touchend="handleTouchEnd"
   >
-    <div class="flex items-center w-10/12">
-      <div class="w-6 h-full flex justify-center items-center">
+    <div class="flex items-center w-[70%] sm:w-[80%]">
+      <div class="w-6 h-full flex justify-center items-center shrink-0">
         <!-- drag-n-drop icon on hover (desktops) or on long tap (mobiles/tablets) -->
         <svgo-drag
           v-show="isDesktopDraggable || isMobileDraggable"
@@ -23,7 +23,7 @@
         class="w-4 h-4 cursor-pointer"
         :class="isEditing ? 'mr-2' : 'mr-3'"
       />
-      <div class="w-10/12">
+      <div class="w-[70%] sm:w-[80%]">
         <input
           v-if="isEditing"
           ref="editInput"

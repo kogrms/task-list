@@ -11,7 +11,7 @@
 
 @layer base {
   img {
-    @apply h-auto;
+    @apply h-auto shrink-0;
     max-width: 100%;
     display: block;
   }
@@ -43,6 +43,9 @@
     @apply border border-blue dark:bg-white/20;
     outline: 0;
     outline-offset: 0;
+  }
+  input[type=checkbox] {
+    @apply shrink-0;
   }
   input[type=checkbox]:not(:checked) {
     @apply opacity-40;
