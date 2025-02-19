@@ -37,7 +37,7 @@
         />
         <h3
           v-else
-          class="truncate w-full"
+          class="truncate w-full text-t12 sm:text-t14"
           :class="{ 'text-grey-20/50': task.completed }"
         >
           {{ task.text }}
@@ -46,10 +46,10 @@
     </div>
     <div class="w-14 flex justify-between items-center">
       <button @click="editTask" class="lg:hover:opacity-70 w-5 h-5 flex justify-center items-center">
-        <img src="~assets/images/pencil.svg" alt="Edit task" class="w-4 h-4" />
+        <img src="~assets/images/pencil.svg" alt="Edit task" class="w-3 h-3 sm:w-4 sm:h-4" />
       </button>
       <button @click="deleteTask" class="lg:hover:opacity-70 w-5 h-5 flex justify-center items-center">
-        <img src="~assets/images/bin.svg" alt="Delete task" class="w-4 h-4" />
+        <img src="~assets/images/bin.svg" alt="Delete task" class="w-3 h-3 sm:w-4 sm:h-4" />
       </button>
     </div>
   </li>
