@@ -4,8 +4,9 @@
     :class="{ 'handle': isMobileDraggable }"
     @mouseover="showDragHandle"
     @mouseleave="hideDragHandle"
-    @touchstart="handleTouchStart"
-    @touchend="handleTouchEnd"
+    @pointerdown="handleTouchStart"
+    @pointerup="handleTouchEnd"
+    @pointermove="handlePointerMove"
   >
     <div class="flex items-center w-[70%] sm:w-[80%] md:w-[80%]">
       <div class="w-6 h-full flex justify-center items-center shrink-0">
@@ -116,5 +117,14 @@ const handleTouchStart = () => {
 const handleTouchEnd = () => {
   clearTimeout(touchTimer) // Reset timer if touch ends before long tap
   // isMobileDraggable.value = false // Hide drag handle after touch end
+  // document.addEventListener('pointerup', (event) => {
+  //   if (!event.target.closest(`[data-task-id="${task.id}"]`)) {
+  //     isMobileDraggable.value = false // Hide drag handle if click is outside this particular element
+  //   }
+  // })
+}
+
+const handlePointerMove = () => {
+  isDraggable.value = false
 }
 </script>
