@@ -9,7 +9,7 @@
     <div class="relative z-20 flex flex-col items-center w-[95vw] max-w-[730px] min-h-[500px] md:min-h-[719px] bg-white dark:bg-grey-20 rounded-3xl px-4 py-6 sm:py-8">
       <ThemeToggle class="absolute top-6 sm:top-8 right-4 sm:right-8" />
 
-      <img src="~assets/images/illustration.png" class="w-[180px] max-w-1/3 md:max-w-[180px] dark:opacity-80"/>
+      <img src="@/assets/images/illustration.png" class="w-[180px] max-w-1/3 md:max-w-[180px] dark:opacity-80"/>
 
       <h1 class="text-3xl font-bold text-center py-4 sm:py-12">Today I need to</h1>
 
