@@ -6,7 +6,7 @@ export default {
     './pages/**/*.vue',
     './plugins/**/*.{js,ts}',
     './app.vue',
-    './error.vue'
+    './error.vue',
   ],
   darkMode: 'class',
   theme: {
@@ -17,7 +17,7 @@ export default {
       t14: ['14px', '120%'],
       t16: ['16px', '120%'],
       t20: ['20px', '120%'],
-      h1: ['24px', '29px']
+      h1: ['24px', '29px'],
     },
     colors: {
       // 'gray-3': '#333333',
@@ -30,23 +30,17 @@ export default {
       'grey-8f': '#8F99A3',
       'purple': '#5D5FEF',
       'pink': '#EF5DA8',
-      'red': '#EC3535'
+      'red': '#EC3535',
     },
     extend: {
       screens: {
-        'sm': '420px',
-        'md': '500px'
-        // https://tailwindcss.com/docs/responsive-design
-        // sm	@media(width >= 640px)
-        // md	@media(width >= 768px)
-        // lg	@media(width >= 1024px)
-        // xl	@media(width >= 1280px)
-        // 2xl	@media(width >= 1536px)
+        sm: '420px',
+        md: '500px',
       },
       width: {
         'content': '410px',
         'task': '450px',
-        '1px': '1px'
+        '1px': '1px',
       },
       minWidth: {
       },
@@ -57,10 +51,10 @@ export default {
         '8/10': '80%',
         '7/10': '70%',
         '1/2': '50%',
-        '1/3': '33.333333%'
+        '1/3': '33.333333%',
       },
       height: {
-        '1px': '1px'
+        '1px': '1px',
       },
       minHeight: {
       },
@@ -68,12 +62,12 @@ export default {
       },
       spacing: {
         '1px': '1px',
-        '2px': '2px'
+        '2px': '2px',
       },
       gap: {
       },
       boxShadow: {
-      }
-    }
-  }
+      },
+    },
+  },
 }

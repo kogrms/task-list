@@ -7,11 +7,14 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "@pinia/nuxt": "^0.10.1",
+    "babel-eslint": "^10.1.0",
     "nuxt": "^3.15.4",
     "nuxt-svgo": "^4.0.14",
     "pinia": "^3.0.1",
@@ -22,6 +25,10 @@
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.13.1"
+    "@antfu/eslint-config": "^4.3.0",
+    "@nuxt/eslint": "^1.1.0",
+    "@nuxtjs/tailwindcss": "^6.13.1",
+    "eslint": "^9.20.1",
+    "typescript": "^5.7.3"
   }
 }

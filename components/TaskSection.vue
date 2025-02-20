@@ -5,10 +5,10 @@
       <draggable
         :list="filteredTasks"
         item-key="id"
-        @end="onDragEnd"
         handle=".handle"
         class="flex flex-col items-center gap-y-3 sm:gap-y-2 overflow-y-auto custom-scrollbar w-full"
         :class="taskListHeight"
+        @end="onDragEnd"
       >
         <template #item="{ element }">
           <Task :task="element" />
@@ -21,14 +21,14 @@
         :card="{
           count: tasks.filter(task => task.completed).length,
           tasks: tasks.length,
-          status: 'completed'
+          status: 'completed',
         }"
       />
       <ProgressBarCard
         :card="{
           count: tasks.filter(task => !task.completed).length,
           tasks: tasks.length,
-          status: 'todo'
+          status: 'todo',
         }"
       />
     </div>
@@ -38,29 +38,29 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { storeToRefs } from 'pinia'
-import { useTaskStore } from '@/stores/taskStore'
-import draggable from 'vuedraggable'
+  import { useTaskStore } from '@/stores/taskStore'
+  import { storeToRefs } from 'pinia'
+  import { computed } from 'vue'
+  import draggable from 'vuedraggable'
 
-const taskStore = useTaskStore()
-const { tasks, filteredTasks } = storeToRefs(taskStore)
+  const taskStore = useTaskStore()
+  const { tasks, filteredTasks } = storeToRefs(taskStore)
 
-const taskListHeight = computed(() => {
-  return taskStore.filteredTasks.length > 3 ? 'h-32' : 'h-28 sm:h-[90px]'
-})
+  const taskListHeight = computed(() => {
+    return taskStore.filteredTasks.length > 3 ? 'h-32' : 'h-28 sm:h-[90px]'
+  })
 
-// Update task order after drag-and-drop
-const onDragEnd = (event) => {
-  const { oldIndex, newIndex } = event
-  // Get the filtered tasks
-  const filtered = taskStore.filteredTasks
-  // Get the dragged and dropped tasks
-  const draggedTask = filtered[oldIndex]
-  const droppedTask = filtered[newIndex]
-  // Update the task order
-  if (draggedTask && droppedTask) {
-    taskStore.updateTaskOrder(draggedTask.id, droppedTask.id)
+  // Update task order after drag-and-drop
+  function onDragEnd(event) {
+    const { oldIndex, newIndex } = event
+    // Get the filtered tasks
+    const filtered = taskStore.filteredTasks
+    // Get the dragged and dropped tasks
+    const draggedTask = filtered[oldIndex]
+    const droppedTask = filtered[newIndex]
+    // Update the task order
+    if (draggedTask && droppedTask) {
+      taskStore.updateTaskOrder(draggedTask.id, droppedTask.id)
+    }
   }
-}
 </script>
