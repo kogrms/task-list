@@ -10,6 +10,6 @@ export default defineNuxtConfig({
   ],
   css: ['~/assets/fonts/fonts.css'],
   svgo: {
-    autoImportPath: './assets/images/'
+    autoImportPath: '~/assets/icons/'
   }
 })
