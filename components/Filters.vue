@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap justify-center items-center mt-2 sm:mt-8 gap-1 w-[250px] sm:w-[300px] md:w-full">
+  <div class="flex flex-wrap justify-center items-center mt-2 md:mt-8 gap-1 w-[250px] min-h-[104px] sm:w-[300px] sm:min-h-[128px] md:min-h-0 md:w-full">
     <button v-if="!areAllTasksChecked" @click="handleCheckAll" class="grey-btn">
       Check all
     </button>
