@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
+    '@nuxt/eslint',
     'nuxt-svgo'
   ],
   css: ['~/assets/fonts/fonts.css'],

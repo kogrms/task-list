@@ -6,11 +6,11 @@
       placeholder="Add new todo..."
       class="input"
       @keyup.enter="addTask"
-    />
+    >
     <button
-      @click="addTask"
-      class="blue-btn"
       v-show="task.trim()"
+      class="blue-btn"
+      @click="addTask"
     >
       Submit
     </button>
@@ -18,13 +18,13 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
   import { useTaskStore } from '@/stores/taskStore'
+  import { ref } from 'vue'
 
   const task = ref('')
   const taskStore = useTaskStore()
 
-  const addTask = () => {
+  function addTask() {
     if (task.value.trim()) {
       taskStore.addTask(task.value.trim()) // Add to Pinia Store
       task.value = '' // Clear input

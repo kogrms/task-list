@@ -18,28 +18,29 @@ export const useTaskStore = defineStore('taskStore', {
     async fetchTasks() {
       try {
         const response = await fetch('https://storage.xochu-shashlik.ru/k/')
-        if (!response.ok) throw new Error('Failed to fetch tasks')
+        if (!response.ok)
+          throw new Error('Failed to fetch tasks')
         this.tasks = await response.json()
 
         // Loading time for the spinner to be visible
         setTimeout(() => {
           this.loading = false
-        }
-        , 500)
-      } catch (error) {
+        }, 500)
+      }
+      catch (error) {
         console.error('Error fetching tasks:', error)
       }
     },
 
     async syncTasks() {
-      console.log('syncTasks', this.tasks)
       try {
         await fetch('https://storage.xochu-shashlik.ru/k/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(this.tasks)
+          body: JSON.stringify(this.tasks),
         })
-      } catch (error) {
+      }
+      catch (error) {
         console.error('Error syncing tasks:', error)
       }
     },
@@ -51,13 +52,13 @@ export const useTaskStore = defineStore('taskStore', {
         text,
         completed: false,
         draggable: false,
-        sortingPosition: maxPosition + 1
+        sortingPosition: maxPosition + 1,
       })
       this.syncTasks()
     },
 
     toggleTask(id: number) {
-      const task = this.tasks.find((t) => t.id === id)
+      const task = this.tasks.find(t => t.id === id)
       if (task) {
         task.completed = !task.completed
         this.syncTasks()
@@ -65,12 +66,12 @@ export const useTaskStore = defineStore('taskStore', {
     },
 
     removeTask(id: number) {
-      this.tasks = this.tasks.filter((t) => t.id !== id)
+      this.tasks = this.tasks.filter(t => t.id !== id)
       this.syncTasks()
     },
 
     updateTask(id: number, text: string) {
-      const task = this.tasks.find((t) => t.id === id)
+      const task = this.tasks.find(t => t.id === id)
       if (task) {
         task.text = text
         this.syncTasks()
@@ -82,12 +83,12 @@ export const useTaskStore = defineStore('taskStore', {
     },
 
     markAllAsCompleted() {
-      this.tasks.forEach((task) => (task.completed = true))
+      this.tasks.forEach(task => (task.completed = true))
       this.syncTasks()
     },
 
     clearCompletedTasks() {
-      this.tasks = this.tasks.filter((task) => !task.completed)
+      this.tasks = this.tasks.filter(task => !task.completed)
       this.syncTasks()
     },
 
@@ -96,16 +97,18 @@ export const useTaskStore = defineStore('taskStore', {
     },
 
     setTaskDraggable(id: number, draggable: boolean) {
-      this.tasks.forEach((task) => (task.draggable = false))
-      const task = this.tasks.find((t) => t.id === id)
-      if (task) task.draggable = draggable
+      this.tasks.forEach(task => (task.draggable = false))
+      const task = this.tasks.find(t => t.id === id)
+      if (task)
+        task.draggable = draggable
     },
 
     updateTaskOrder(draggedId: number, droppedId: number) {
-      const draggedTask = this.tasks.find((t) => t.id === draggedId)
-      const droppedTask = this.tasks.find((t) => t.id === droppedId)
+      const draggedTask = this.tasks.find(t => t.id === draggedId)
+      const droppedTask = this.tasks.find(t => t.id === droppedId)
 
-      if (!draggedTask || !droppedTask) return
+      if (!draggedTask || !droppedTask)
+        return
 
       const oldPosition = draggedTask.sortingPosition
       const newPosition = droppedTask.sortingPosition
@@ -116,7 +119,8 @@ export const useTaskStore = defineStore('taskStore', {
           if (task.sortingPosition > oldPosition && task.sortingPosition <= newPosition) {
             task.sortingPosition -= 1
           }
-        } else {
+        }
+        else {
           if (task.sortingPosition < oldPosition && task.sortingPosition >= newPosition) {
             task.sortingPosition += 1
           }
@@ -127,24 +131,26 @@ export const useTaskStore = defineStore('taskStore', {
       this.tasks.sort((a, b) => a.sortingPosition - b.sortingPosition)
 
       this.syncTasks()
-    }
+    },
   },
 
   getters: {
-    isEditingTask: (state) => (id: number) => state.editingTaskId === id,
+    isEditingTask: state => (id: number) => state.editingTaskId === id,
 
     filteredTasks: (state) => {
       let tasks = state.tasks
-      if (state.filter === 'active') tasks = tasks.filter((task) => !task.completed)
-      if (state.filter === 'completed') tasks = tasks.filter((task) => task.completed)
+      if (state.filter === 'active')
+        tasks = tasks.filter(task => !task.completed)
+      if (state.filter === 'completed')
+        tasks = tasks.filter(task => task.completed)
       return tasks.sort((a, b) => a.sortingPosition - b.sortingPosition)
     },
 
-    hasCompletedTasks: (state) => state.tasks.some((task) => task.completed),
+    hasCompletedTasks: state => state.tasks.some(task => task.completed),
 
-    getTaskDraggable: (state) => (id: number) => {
-      const task = state.tasks.find((t) => t.id === id)
+    getTaskDraggable: state => (id: number) => {
+      const task = state.tasks.find(t => t.id === id)
       return task ? task.draggable : false
-    }
-  }
+    },
+  },
 })
