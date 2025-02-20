@@ -88,6 +88,10 @@ export const useTaskStore = defineStore('taskStore', {
 
       return tasks.sort((a, b) => a.sortingPosition - b.sortingPosition)
     },
-    hasCompletedTasks: (state) => state.tasks.some((task) => task.completed)
+    hasCompletedTasks: (state) => state.tasks.some((task) => task.completed),
+    getTaskDraggable: (state) => (id: number) => {
+      const task = state.tasks.find((t) => t.id === id)
+      return task ? task.draggable : false
+    }
   }
 })
