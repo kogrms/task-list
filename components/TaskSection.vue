@@ -1,30 +1,20 @@
 <template>
   <div class="flex flex-col items-center w-[450px] max-w-full">
-
-    <!-- Task list with drag-and-drop without filters -->
+    <!-- Task list with drag-and-drop -->
     <ClientOnly>
       <draggable
-        v-if="taskStore.filter === 'all'"
-        v-model="taskStore.tasks"
+        :list="filteredTasks"
         item-key="id"
         @end="onDragEnd"
         handle=".handle"
-        class="flex flex-col items-center gap-y-3 sm:gap-y-2 h-28 sm:h-[90px] overflow-y-auto custom-scrollbar w-full"
+        class="flex flex-col items-center gap-y-3 sm:gap-y-2 overflow-y-auto custom-scrollbar w-full"
+        :class="taskListHeight"
       >
         <template #item="{ element }">
           <Task :task="element" />
         </template>
       </draggable>
     </ClientOnly>
-
-    <!-- Task list with filters & no drag-n-grop -->
-    <ul
-      v-if="taskStore.filter !== 'all'"
-      class="flex flex-col items-center gap-y-3 sm:gap-y-2 h-28 sm:h-[90px] overflow-y-auto custom-scrollbar w-full"
-    >
-      <Task v-for="task in taskStore.filteredTasks" :key="task.id" :task="task" :no-dragdrop="true" />
-    </ul>
-
     <!-- Progress bar cards -->
     <div class="max-w-full w-content grid grid-cols-1 sm:grid-cols-2 gap-x-4 md:gap-x-8 gap-y-2 sm:gap-y-4 mt-6 sm:mt-8">
       <ProgressBarCard
@@ -42,22 +32,35 @@
         }"
       />
     </div>
-
     <!-- Task filters -->
     <Filters />
   </div>
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useTaskStore } from '@/stores/taskStore'
 import draggable from 'vuedraggable'
 
 const taskStore = useTaskStore()
-const { tasks } = storeToRefs(taskStore)
+const { tasks, filteredTasks } = storeToRefs(taskStore)
+
+const taskListHeight = computed(() => {
+  return taskStore.filteredTasks.length > 3 ? 'h-32' : 'h-28 sm:h-[90px]'
+})
 
 // Update task order after drag-and-drop
-const onDragEnd = () => {
-  taskStore.updateTaskOrder([...tasks.value])
+const onDragEnd = (event) => {
+  const { oldIndex, newIndex } = event
+  // Get the filtered tasks
+  const filtered = taskStore.filteredTasks
+  // Get the dragged and dropped tasks
+  const draggedTask = filtered[oldIndex]
+  const droppedTask = filtered[newIndex]
+  // Update the task order
+  if (draggedTask && droppedTask) {
+    taskStore.updateTaskOrder(draggedTask.id, droppedTask.id)
+  }
 }
 </script>

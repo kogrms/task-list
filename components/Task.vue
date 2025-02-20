@@ -1,18 +1,20 @@
 <template>
   <li
     class="flex items-center justify-between gap-4 w-[calc(100%-0.25rem)] pr-3 mr-1 h-7 rounded-md bg-white dark:bg-grey-20 shrink-0"
-    :class="{ 'handle': isMobileDraggable }"
-    @mouseover="showDragHandle"
+    :class="{ 'handle': task.isDraggable && !isDesktop.value }"
+    @mouseover="setTaskDraggable(true)"
+    @mouseleave="setTaskDraggable(false)"
+  >
+      <!-- @mouseover="showDragHandle"
     @mouseleave="hideDragHandle"
     @pointerdown="handleTouchStart"
     @pointerup="handleTouchEnd"
-    @pointermove="handlePointerMove"
-  >
+    @pointermove="handlePointerMove" -->
     <div class="flex items-center w-[70%] sm:w-[80%] md:w-[80%]">
       <div class="w-6 h-full flex justify-center items-center shrink-0">
         <!-- drag-n-drop icon on hover (desktops) or on long tap (mobiles/tablets) -->
         <svgo-drag
-          v-show="isDesktopDraggable || isMobileDraggable"
+          v-show="task.isDraggable"
           class="handle w-4 h-4 cursor-grab text-grey-20/50 dark:text-white/65"
         />
       </div>
@@ -69,22 +71,28 @@ const taskStore = useTaskStore()
 const isEditing = ref(false)
 const newTaskText = ref(task.text)
 const editInput = ref(null)
-
-const isDesktopDraggable = ref(false) // Enable drag-n-drop for desktops
-const isMobileDraggable = ref(false) // Enable drag-n-drop for mobiles/tablets
+// const isDesktopDraggable = ref(false) // Enable drag-n-drop for desktops
+// const isMobileDraggable = ref(false) // Enable drag-n-drop for mobiles/tablets
 let touchTimer = null
 
-const toggleTask = () => {
-  taskStore.toggleTask(task.id) // Toggle task completion state in Pinia
-}
+// Detect desktop devices
+const isDesktop = ref(true)
+onMounted(() => {
+  isDesktop.value = window.matchMedia('(hover: hover)').matches
+})
 
+// Toggle task completion state in Pinia
+const toggleTask = () => {
+  taskStore.toggleTask(task.id)
+}
+// Edit task text
 const editTask = () => {
   isEditing.value = true // Enter edit mode
   nextTick(() => {
     editInput.value.focus() // Focus input after DOM update
   })
 }
-
+// Save updated task text
 const saveTask = () => {
   if (newTaskText.value.trim() && newTaskText.value.trim() !== task.text) {
     taskStore.updateTask(task.id, newTaskText.value.trim()) // Save updated task to Pinia
@@ -99,32 +107,25 @@ const deleteTask = () => {
   taskStore.removeTask(task.id) // Delete task from Pinia
 }
 
-const showDragHandle = () => {
-  isDesktopDraggable.value = true // Show drag handle on hover (desktop)
+const setTaskDraggable = (isDraggable) => {
+  task.isDraggable = isDraggable
 }
 
-const hideDragHandle = () => {
-  isDesktopDraggable.value = false // Hide drag handle on hover out (desktop)
-}
+// const showDragHandle = () => {
+//   isDesktopDraggable.value = true // Show drag handle on hover (desktop)
+// }
 
-// For mobile devices, detect long tap to show drag handle
-const handleTouchStart = () => {
-  touchTimer = setTimeout(() => {
-    isMobileDraggable.value = true // Show drag handle after long tap
-  }, 200) // Adjust the time for long tap detection
-}
+// const hideDragHandle = () => {
+//   isDesktopDraggable.value = false // Hide drag handle on hover out (desktop)
+// }
+// // For mobile devices, detect long tap to show drag handle
+// const handleTouchStart = () => {
+//   touchTimer = setTimeout(() => {
+//     isMobileDraggable.value = true // Show drag handle after long tap
+//   }, 200) // Adjust the time for long tap detection
+// }
 
-const handleTouchEnd = () => {
-  clearTimeout(touchTimer) // Reset timer if touch ends before long tap
-  // isMobileDraggable.value = false // Hide drag handle after touch end
-  // document.addEventListener('pointerup', (event) => {
-  //   if (!event.target.closest(`[data-task-id="${task.id}"]`)) {
-  //     isMobileDraggable.value = false // Hide drag handle if click is outside this particular element
-  //   }
-  // })
-}
-
-const handlePointerMove = () => {
-  isDraggable.value = false
-}
+// const handleTouchEnd = () => {
+//   clearTimeout(touchTimer) // Reset timer if touch ends before long tap
+// }
 </script>
