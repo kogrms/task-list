@@ -7,10 +7,10 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     '@nuxt/eslint',
-    'nuxt-svgo',
+    'nuxt-svgo'
   ],
   css: ['~/assets/fonts/fonts.css'],
   svgo: {
-    autoImportPath: '~/assets/icons/',
-  },
+    autoImportPath: '~/assets/icons/'
+  }
 })

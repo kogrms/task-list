@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @custom-variant dark (&:where(.dark, .dark *)); */
-/* @layer components {
-  .dark & {
-    @apply dark;
-  }
-} */
-
 @layer base {
   img {
     @apply h-auto shrink-0;
@@ -17,7 +10,6 @@
   }
   input,
   button,
-  textarea,
   select {
     font: inherit;
   }
@@ -57,12 +49,10 @@
   }
   html {
     @apply scroll-smooth text-t16;
-    /* text-lg sm:text-sm  */
   }
   body {
     font-family: Inter, Arial, Helvetica, sans-serif;
     @apply text-grey-20 dark:text-white text-t14;
-
     /* &.dark {
       @apply text-white;
     } */
@@ -70,9 +60,6 @@
   h1 {
     @apply text-t20 sm:text-h1 font-bold;
   }
-  /* h2 {
-    @apply text-h2 sm:text-h2sm uppercase font-bold;
-  } */
 }
 
 @layer components {
@@ -91,7 +78,6 @@
   .custom-scrollbar {
     &::-webkit-scrollbar {
       width: 4px;
-      /* height: 80px; */
       border-radius: 8px;
     }
 

@@ -5,8 +5,7 @@ export default {
     './layouts/**/*.vue',
     './pages/**/*.vue',
     './plugins/**/*.{js,ts}',
-    './app.vue',
-    './error.vue',
+    './app.vue'
   ],
   darkMode: 'class',
   theme: {
@@ -17,11 +16,9 @@ export default {
       t14: ['14px', '120%'],
       t16: ['16px', '120%'],
       t20: ['20px', '120%'],
-      h1: ['24px', '29px'],
+      h1: ['24px', '29px']
     },
     colors: {
-      // 'gray-3': '#333333',
-      // 'label-red': '#ed1c24',
       'black': '#000000',
       'white': '#FFFFFF',
       'blue': '#2578F4',
@@ -30,44 +27,19 @@ export default {
       'grey-8f': '#8F99A3',
       'purple': '#5D5FEF',
       'pink': '#EF5DA8',
-      'red': '#EC3535',
+      'red': '#EC3535'
     },
     extend: {
       screens: {
         sm: '420px',
-        md: '500px',
+        md: '500px'
       },
       width: {
-        'content': '410px',
-        'task': '450px',
-        '1px': '1px',
-      },
-      minWidth: {
+        'content': '410px'
       },
       maxWidth: {
-        'content': '410px',
-        'task': '450px',
-        '9/10': '90%',
-        '8/10': '80%',
-        '7/10': '70%',
-        '1/2': '50%',
-        '1/3': '33.333333%',
-      },
-      height: {
-        '1px': '1px',
-      },
-      minHeight: {
-      },
-      maxHeight: {
-      },
-      spacing: {
-        '1px': '1px',
-        '2px': '2px',
-      },
-      gap: {
-      },
-      boxShadow: {
-      },
-    },
-  },
+        '1/3': '33.333333%'
+      }
+    }
+  }
 }

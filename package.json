@@ -12,16 +12,12 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.13.6",
     "@pinia/nuxt": "^0.10.1",
-    "babel-eslint": "^10.1.0",
     "nuxt": "^3.15.4",
     "nuxt-svgo": "^4.0.14",
     "pinia": "^3.0.1",
     "vue": "latest",
-    "vue-draggable-plus": "^0.6.0",
     "vue-router": "latest",
-    "vue3-smooth-dnd": "^0.0.6",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
