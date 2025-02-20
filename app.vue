@@ -58,14 +58,22 @@
   const loading = storeToRefs(taskStore).loading
 
   useHead({
-    title: 'Nuxt 3 Todo App by Konstantin Babushkin',
+    title: 'Task List App by Konstantin Babushkin',
     meta: [
       { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' },
       { name: 'description', content: 'A simple todo app built with Nuxt 3 & Tailwind CSS' },
       { name: 'keywords', content: 'nuxt, nuxt3, todo, todo app' },
       { name: 'author', content: 'Konstantin Babushkin' },
-      { name: 'application-name', content: 'Nuxt 3 Todo App' },
-    ],
+      { name: 'application-name', content: 'Task List App' },
+      { name: 'url', content: 'https://task-list-tan.vercel.app/' },
+      { name: 'og:title', content: 'Task List App by Konstantin Babushkin' },
+      { name: 'og:description', content: 'A simple todo app built with Nuxt 3 & Tailwind CSS' },
+      { name: 'og:image', content: 'https://task-list-tan.vercel.app/illustration.png' },
+      { name: 'og:url', content: 'https://task-list-tan.vercel.app/' },
+      { name: 'og:type', content: 'website' },
+      { name: 'og:site_name', content: 'Task List App' },
+      { name: 'og:locale', content: 'en_US' }
+    ]
   })
 
   onMounted(() => {
