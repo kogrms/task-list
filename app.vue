@@ -45,6 +45,17 @@ const { tasks } = storeToRefs(taskStore)
 
 const loading = storeToRefs(taskStore).loading
 
+useHead({
+  title: 'Nuxt 3 Todo App',
+  meta: [
+    { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" },
+    { name: "description", content: "A simple todo app built with Nuxt 3 & Tailwind CSS" },
+    { name: "keywords", content: "nuxt, nuxt3, todo, todo app" },
+    { name: "author", content: "Konstantin Babushkin" },
+    { name: "application-name", content: "Nuxt 3 Todo App" }
+  ]
+})
+
 onMounted(() => {
   taskStore.fetchTasks()
 })
